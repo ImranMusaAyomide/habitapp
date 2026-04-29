@@ -13,6 +13,7 @@ export default function SignupForm() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -34,6 +35,7 @@ export default function SignupForm() {
       id: generateId(),
       email,
       password,
+      phone,
       createdAt: new Date().toISOString(),
     };
 
@@ -74,7 +76,7 @@ export default function SignupForm() {
           />
         </div>
 
-        <div className="mb-6">
+        <div className="mb-4">
           <label
             htmlFor="signup-password"
             className="block text-sm font-medium text-slate-700 mb-1.5"
@@ -94,6 +96,25 @@ export default function SignupForm() {
           />
         </div>
 
+        <div className="mb-6">
+          <label
+            htmlFor="signup-phone"
+            className="block text-sm font-medium text-slate-700 mb-1.5"
+          >
+            Phone Number
+          </label>
+          <input
+            id="signup-phone"
+            data-testid="auth-signup-phone"
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            className="input-field"
+            placeholder="+1 (555) 123-4567"
+            autoComplete="tel"
+          />
+        </div>
+
         <button
           type="submit"
           data-testid="auth-signup-submit"
@@ -103,10 +124,9 @@ export default function SignupForm() {
           {loading ? "Creating account…" : "Create Account"}
         </button>
 
-        <p className="mt-4 text-center text-sm text-slate-500">
-          Already have an account?{" "}
+        <p className="mt-4 text-center text-sm">
           <Link href="/login" className="text-green-600 font-medium hover:underline">
-            Sign in
+            Already have an account? Sign in
           </Link>
         </p>
       </form>

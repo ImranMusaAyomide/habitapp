@@ -6,14 +6,14 @@ import { validateHabitName } from "@/lib/validators";
 
 interface HabitFormProps {
   initial?: Partial<Habit>;
-  onSave: (data: { name: string; description: string; frequency: "daily" }) => void;
+  onSave: (data: { name: string; description: string; frequency: "daily" | "weekly" | "monthly" }) => void;
   onCancel: () => void;
 }
 
 export default function HabitForm({ initial, onSave, onCancel }: HabitFormProps) {
   const [name, setName] = useState(initial?.name ?? "");
   const [description, setDescription] = useState(initial?.description ?? "");
-  const [frequency] = useState<"daily">("daily");
+  const [frequency, setFrequency] = useState<"daily" | "weekly" | "monthly">(initial?.frequency ?? "daily");
   const [nameError, setNameError] = useState<string | null>(null);
 
   function handleSubmit(e: React.FormEvent) {
@@ -90,10 +90,12 @@ export default function HabitForm({ initial, onSave, onCancel }: HabitFormProps)
           id="habit-frequency"
           data-testid="habit-frequency-select"
           value={frequency}
-          disabled
-          className="input-field bg-slate-50 cursor-not-allowed"
+          onChange={(e) => setFrequency(e.target.value as "daily" | "weekly" | "monthly")}
+          className="input-field"
         >
           <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
         </select>
       </div>
 

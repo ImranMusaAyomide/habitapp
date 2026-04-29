@@ -8,7 +8,7 @@ export default function SplashScreen() {
     >
       <div className="text-center">
         <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-3xl mb-6 shadow-lg">
-          <span className="text-green-500 text-4xl">✦</span>
+          <img src="/icons/logo.svg" alt="Habit Tracker Logo" className="w-12 h-12" style={{ filter: 'brightness(0) saturate(100%) invert(60%) sepia(90%) saturate(600%) hue-rotate(90deg)' }} />
         </div>
         <h1
           className="text-4xl font-bold text-white mb-2"
